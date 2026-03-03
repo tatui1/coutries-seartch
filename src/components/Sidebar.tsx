@@ -1,26 +1,27 @@
-import Drawer from '@mui/material/Drawer';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import type { IContryShort } from '../types';
+import Drawer from '@mui/material/Drawer'
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import ListItemButton from '@mui/material/ListItemButton'
+import ListItemText from '@mui/material/ListItemText'
+import type { IContryShort } from '../types'
 
 interface SidebarProps {
-    countries: IContryShort[];
+    countries: IContryShort[]
+    onSelectCountry: (alpha3Code: string) => void
 }
 
-export const Sidebar = ({ countries }: SidebarProps) => {
+export const Sidebar = ({ countries, onSelectCountry }: SidebarProps) => {
     return (
         <Drawer open sx={{ width: 300, '& .MuiDrawer-paper': { width: 300 } }}>
             <List>
                 {countries.map((country) => (
                     <ListItem key={country.alpha3Code} disablePadding>
-                        <ListItemButton>
+                        <ListItemButton onClick={() => onSelectCountry(country.alpha3Code)}>
                             <ListItemText primary={country.name} />
                         </ListItemButton>
                     </ListItem>
                 ))}
             </List>
         </Drawer>
-    );
-};
+    )
+}
