@@ -16,11 +16,13 @@ function App() {
   useEffect(()=>{
     const getContries = async() => {
       try{
-        const response = await fetch(`${BASE_URL}/alpha/${alpha3Code}?fields=name,capital,population,borders,flag`)
+        const response = await fetch(`${BASE_URL}/all?fields=alpha3Code,name`)
         if (!response.ok) {
           throw new Error
         }
         const data:IContryShort[] = await response.json()
+        const sortedData = data.sort((a, b) => a.name.localeCompare(b.name))
+        setCountriesList(sortedData)
         console.log('data', data)
         setCountriesList(data)
       } catch(e){
@@ -31,8 +33,9 @@ function App() {
   },[])
 
     const handleSelectCountry = async (alpha3Code: string) => {
+    setLoading(true)
     try {
-      const response = await fetch(`${BASE_URL}/alpha/${alpha3Code}?fields=name,capital,population,borders`)
+      const response = await fetch(`${BASE_URL}/alpha/${alpha3Code}?fields=name,capital,population,borders,flag`)
       if (!response.ok) {
         throw new Error
       }

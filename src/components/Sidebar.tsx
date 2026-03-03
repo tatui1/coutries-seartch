@@ -12,7 +12,13 @@ interface SidebarProps {
 
 export const Sidebar = ({ countries, onSelectCountry }: SidebarProps) => {
     return (
-        <Drawer open sx={{ width: 300, '& .MuiDrawer-paper': { width: 300 } }}>
+        <Drawer 
+            open variant="permanent" sx={{ width: 300, '& .MuiDrawer-paper': { 
+                    width: 300,
+                    position: 'relative',
+                    height: '100vh'
+                } 
+            }}>
             <List>
                 {countries.map((country) => (
                     <ListItem key={country.alpha3Code} disablePadding>

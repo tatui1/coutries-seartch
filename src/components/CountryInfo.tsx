@@ -47,8 +47,7 @@ export const CountryInfo = ({ country }: CountryInfoProps) => {
                     height="200"
                     image={country.flag}
                     alt={`Флаг ${country.name}`}
-                    sx={{ objectFit: 'contain', p: 2 }}
-                />
+                    sx={{ objectFit: 'contain', p: 2 }}/>
             )}
             <CardContent>
                 <Typography variant="h4" gutterBottom>{country.name}</Typography>
