@@ -16,7 +16,7 @@ function App() {
   useEffect(()=>{
     const getContries = async() => {
       try{
-        const response = await fetch(`${BASE_URL}/all?fields=alpha3Code,name`)
+        const response = await fetch(`${BASE_URL}/alpha/${alpha3Code}?fields=name,capital,population,borders,flag`)
         if (!response.ok) {
           throw new Error
         }

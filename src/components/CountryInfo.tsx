@@ -6,6 +6,7 @@ import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import type { ICountryFull } from '../types';
 import { BASE_URL } from '../constans'
+import CardMedia from '@mui/material/CardMedia'
 
 interface CountryInfoProps {
     country: ICountryFull;
@@ -39,11 +40,20 @@ export const CountryInfo = ({ country }: CountryInfoProps) => {
     }, [country])
 
     return (
-        <Card>
+         <Card>
+            {country.flag && (
+                <CardMedia
+                    component="img"
+                    height="200"
+                    image={country.flag}
+                    alt={`Флаг ${country.name}`}
+                    sx={{ objectFit: 'contain', p: 2 }}
+                />
+            )}
             <CardContent>
                 <Typography variant="h4" gutterBottom>{country.name}</Typography>
                 <Typography variant="body1">Столица: {country.capital || 'Нет данных'}</Typography>
-                <Typography variant="body1">Население: {country.population.toLocaleString()} чел.</Typography> 
+                <Typography variant="body1">Население: {country.population.toLocaleString()} чел.</Typography>
                 <Typography variant="h6" sx={{ mt: 2 }}>Граничит с:</Typography>
                 {borderNames.length > 0 ? (
                     <List>

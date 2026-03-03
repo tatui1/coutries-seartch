@@ -8,4 +8,5 @@ export interface ICountryFull {
     capital: string;
     population: number;
     borders: string[];
+    flag: string;
 }
