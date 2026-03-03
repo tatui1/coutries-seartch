@@ -27,15 +27,27 @@ function App() {
     getContries()
   },[])
 
-  const handleSelectCountry = (alpha3Code: string) => {
-    console.log('Выбрана страна с кодом:', alpha3Code)
+    const handleSelectCountry = async (alpha3Code: string) => {
+    try {
+      const response = await fetch(`${BASE_URL}/alpha/${alpha3Code}?fields=name,capital,population,borders`);
+      if (!response.ok) {
+        throw new Error
+      }
+      const data: ICountryFull = await response.json();
+      setSelectedCountry(data);
+    } catch (e){
+      console.log(e);
+    }
   }
 
   return (
-     <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex' }}>
       <Sidebar countries={countriesList} onSelectCountry={handleSelectCountry} />
       <Box sx={{ flexGrow: 1, p: 3 }}>
-        <Typography variant="h5">Выберите страну</Typography>
+        {!selectedCountry ? (
+          <Typography variant="h5">Выберите страну</Typography>) : (
+          <Typography variant="h4">{selectedCountry.name}</Typography>
+        )}
       </Box>
     </Box>
   )
