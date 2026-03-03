@@ -4,6 +4,7 @@ import type { IContryShort, ICountryFull } from './types'
 import {BASE_URL} from './constans'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
+import { CountryInfo } from './components/CountryInfo'
 
 
 function App() {
@@ -46,7 +47,7 @@ function App() {
       <Box sx={{ flexGrow: 1, p: 3 }}>
         {!selectedCountry ? (
           <Typography variant="h5">Выберите страну</Typography>) : (
-          <Typography variant="h4">{selectedCountry.name}</Typography>
+          <CountryInfo country={selectedCountry} />
         )}
       </Box>
     </Box>
