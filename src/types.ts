@@ -1,9 +1,11 @@
 export interface IContryShort {
     name: string;
     alpha3Code: string;
-    independent: boolean;
+}
+
+export interface ICountryFull {
+    name: string;
     capital: string;
-    region: string;
     population: number;
-    flag: string;
+    borders: string[];
 }

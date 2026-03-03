@@ -2,6 +2,7 @@ import { useState, useEffect} from 'react'
 import {Sidebar} from './components/Sidebar'
 import type { IContryShort } from './types'
 import {BASE_URL} from './constans'
+import Box from '@mui/material/Box';
 
 
 function App() {
@@ -25,9 +26,9 @@ function App() {
   },[])
 
   return (
-    <div>
-      <Sidebar/>
-    </div>
+    <Box sx={{ display: 'flex' }}>
+      <Sidebar countries={countriesList} />
+    </Box>
   )
 }
 
